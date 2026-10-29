@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Explainer</title>
+  <meta name="description" content="Turn your study PDFs into one explanation at five depths, a mindmap, and a tutor.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="/vendor/katex.css">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <aside id="history" aria-label="Projects and chats">
+    <div class="brand-row">
+      <div class="brand">explainer</div>
+      <button id="hist-collapse" class="ghost icon-btn" aria-label="Collapse history" title="Collapse history"><i data-icon="sidebarClose"></i></button>
+    </div>
+    <button id="new-project" class="btn wide"><i data-icon="plus"></i>New project</button>
+    <div class="seg hist-tabs" role="group" aria-label="History or notes">
+      <button data-htab="history" aria-pressed="true">History</button>
+      <button data-htab="notes" aria-pressed="false">Notes<span id="notes-count"></span></button>
+    </div>
+    <nav id="project-list"></nav>
+    <div id="notes-view" hidden>
+      <div class="notes-bar"><span id="notes-bar-label"></span><button id="notes-toggle" class="ghost">Expand all</button></div>
+      <nav id="notes-list"></nav>
+      <p id="notes-empty">Star an answer, or select text in the explanation, a chat or your PDF and choose <b>Add note</b>.</p>
+    </div>
+    <div id="agent" hidden>
+      <button id="agent-btn" class="agent-btn">
+        <span class="agent-dot"></span>
+        <span class="agent-text"><span id="agent-label">Connect your agent</span><span id="agent-sub"></span></span>
+      </button>
+    </div>
+  </aside>
+
+  <main id="main"></main>
+
+  <section id="side" aria-label="Mindmap and chat">
+    <div id="side-resize" role="separator" aria-orientation="vertical" aria-label="Resize panel" tabindex="0"></div>
+    <header class="side-head">
+      <div class="seg" role="group" aria-label="Panel view">
+        <button data-tab="mindmap" aria-pressed="true"><i data-icon="map"></i><span class="lbl">Mindmap</span></button>
+        <button data-tab="chat" aria-pressed="false"><i data-icon="chat"></i><span class="lbl">Chat</span></button>
+      </div>
+      <div class="side-actions">
+        <button id="side-collapse" class="btn icon-btn" aria-label="Collapse chat panel" title="Collapse chat panel"><i data-icon="panelClose"></i></button>
+        <button id="mm-full" class="btn icon-btn" aria-label="Open full screen" title="Open full screen"><i data-icon="expand"></i></button>
+        <button id="new-chat" class="btn dark"><i data-icon="plus"></i><span class="lbl">New chat</span></button>
+      </div>
+    </header>
+    <div id="mindmap-view" class="pane"></div>
+    <div id="chat-view" class="pane" hidden>
+      <div id="messages" aria-live="polite"></div>
+      <form id="composer">
+        <div id="attachments" hidden aria-label="Attached to your message"></div>
+        <div class="row">
+          <label for="input" class="sr-only">Message</label>
+          <textarea id="input" rows="2" placeholder="Ask anything about your sources… (start with /short for a brief answer)"></textarea>
+          <button class="btn dark icon-btn" id="send" aria-label="Send"><i data-icon="up"></i></button>
+        </div>
+        <div class="composer-bar">
+          <label for="model" class="sr-only">Model</label>
+          <span class="select">
+            <select id="model">
+              <option value="">Default model</option>
+              <option value="opus">Opus · smartest</option>
+              <option value="sonnet">Sonnet · balanced</option>
+              <option value="haiku">Haiku · fastest</option>
+            </select>
+            <i data-icon="chevron" data-size="12"></i>
+          </span>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <div id="side-edge"></div>
+  <button id="hist-open" class="btn icon-btn" hidden aria-label="Open history" title="Open history"><i data-icon="sidebarOpen"></i></button>
+  <button id="side-open" class="btn" hidden aria-label="Open chat panel" title="Open chat panel"><i data-icon="panelOpen"></i>Chat</button>
+  <div id="sel-actions" hidden>
+    <button class="btn dark" data-sel="ask"><i data-icon="help" data-size="14"></i>Ask question</button>
+    <button class="btn dark" data-sel="big" id="sel-big"></button>
+    <button class="btn dark" data-sel="note"><i data-icon="note" data-size="14"></i>Add note</button>
+  </div>
+  <div id="mini" hidden role="dialog" aria-label="Quick question"></div>
+  <div id="lightbox" hidden><img alt=""></div>
+  <dialog id="quiz-gate" aria-label="Quiz"></dialog>
+  <dialog id="agent-dialog" aria-label="Connect your agent"></dialog>
+
+  <script type="module" src="/app.js"></script>
+</body>
+</html>

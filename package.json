@@ -1,0 +1,19 @@
+{
+  "name": "explainer",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "hosted": "EXPLAINER_HOSTED=1 node server.js"
+  },
+  "dependencies": {
+    "dompurify": "^3.2.6",
+    "katex": "^0.16.22",
+    "marked": "^15.0.12",
+    "pdfjs-dist": "^5.3.31",
+    "ws": "^8.22.0"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}
