@@ -44,7 +44,8 @@ Everything is stored in `./data/<project>/`.
 
 [![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/jolly-0806/explainer)
 
-The deploy button uses [`render.yaml`](render.yaml): a Node web service with a persistent disk. You can host it anywhere
+The deploy button uses [`render.yaml`](render.yaml): a Node web service on Render's free plan. It sleeps after 15 idle
+minutes, and projects are wiped on every restart or deploy; `render.yaml` notes how to add a disk to keep them. You can host it anywhere
 that runs a long-lived Node 22 process and allows WebSockets:
 
 ```sh

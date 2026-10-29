@@ -1,20 +1,17 @@
 # One-click deploy: https://render.com/deploy?repo=https://github.com/jolly-0806/explainer
 # Hosted mode: visitors get private workspaces and connect their own Claude Code (agent.mjs).
-# The disk keeps projects and PDFs across deploys (disks need a paid instance type).
+# Free plan: the service sleeps after 15 idle minutes, and projects are wiped on every restart or deploy.
+# To keep them, switch to a paid plan and add a disk:
+#   plan: starter
+#   disk: { name: explainer-data, mountPath: /var/data, sizeGB: 5 }   + env EXPLAINER_DATA=/var/data
 services:
   - type: web
     name: explainer
     runtime: node
-    plan: starter
+    plan: free
     buildCommand: npm ci
     startCommand: npm start
     healthCheckPath: /api/agent
     envVars:
       - key: EXPLAINER_HOSTED
         value: "1"
-      - key: EXPLAINER_DATA
-        value: /var/data
-    disk:
-      name: explainer-data
-      mountPath: /var/data
-      sizeGB: 5
